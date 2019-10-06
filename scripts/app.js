@@ -10,6 +10,8 @@ var audioContext; //audio context to help us record
 
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
+var uploadButton = document.getElementById("uploadButton");
+uploadButton.style.visibility = "hidden";
 
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
@@ -72,10 +74,12 @@ function createUploadLink(blob) {
 
 	
 	//upload link
-	var upload = document.createElement('a');
-	upload.href="#";
-	upload.innerHTML = "Upload";
-	upload.addEventListener("click", function(event){
+	//var upload = document.createElement('a');
+  uploadButton.href="#";
+  uploadButton.innerHTML = "UPLOAD"
+  
+	uploadButton.addEventListener("click", function(event){
+    console.log('clicked');
 		  var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {
 		      if(this.readyState === 4) {
@@ -88,8 +92,6 @@ function createUploadLink(blob) {
 		  xhr.send(fd);
 	});
 
-	li.appendChild(upload);
+  uploadButton.style.visibility = "visible";
 
-	//add the li element to the ol
-	recordingsList.appendChild(li);
 }
